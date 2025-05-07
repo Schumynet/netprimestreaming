@@ -1,0 +1,4 @@
+# Ignora i file e le cartelle seguenti
+node_modules/
+package-lock.json
+.env
