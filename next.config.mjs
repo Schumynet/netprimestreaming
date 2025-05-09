@@ -8,7 +8,6 @@ const config = {
   basePath: "/netprimestreaming", // Usa il nome esatto del repository GitHub
   assetPrefix: "/netprimestreaming/",
 
-  // Impostazioni aggiuntive
   i18n: {
     locales: ["en"],
     defaultLocale: "en",
