@@ -1,0 +1,40 @@
+name: Deploy Next.js to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main  # Modifica se il branch principale è diverso
+  pull_request:
+
+jobs:
+  build_and_deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 🔹 Checkout del codice
+        uses: actions/checkout@v3
+
+      - name: 🔹 Installazione di Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'  # Puoi cambiare la versione
+
+      - name: 🔹 Installazione delle dipendenze
+        run: npm install
+
+      - name: 🔹 Build del progetto Next.js
+        run: npm run build && npm run export
+
+      - name: 🔹 Creazione del file `.nojekyll`
+        run: touch out/.nojekyll
+
+      - name: 🔹 Configurazione di Git per il deploy
+        run: |
+          git config --global user.email "github-actions@example.com"
+          git config --global user.name "GitHub Actions"
+      
+      - name: 🔹 Deploy su GitHub Pages
+        run: |
+          git add out
+          git commit -m "Deploy Next.js su GitHub Pages"
+          git push origin main
